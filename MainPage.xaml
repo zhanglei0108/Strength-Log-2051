@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Strength_Log.MainPage"
+             Title="Welcome">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30"
+                             Spacing="25"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center">
+
+            <Label Text="Strength Log"
+                   FontSize="36"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="Black" />
+
+            <Label Text="Great progress takes time, discipline, and patience. Are you ready to begin your strength journey?"
+                   FontSize="18"
+                   HorizontalTextAlignment="Center"
+                   TextColor="Gray"
+                   LineBreakMode="WordWrap"
+                   Margin="20,10,20,20" />
+            <!--Click the start button and navigate to the next page-->
+            <Button Text="Get Started"
+                    Clicked="GoWelcomeClicked"
+                    HeightRequest="55"
+                    WidthRequest="250"
+                    CornerRadius="10"
+                    BackgroundColor="#5B35D5"
+                    TextColor="White"
+                    FontAttributes="Bold" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

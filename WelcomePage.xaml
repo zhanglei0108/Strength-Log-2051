@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Strength_Log.WelcomePage"
+             Title="Welcome"
+             BackgroundColor="#F5F7FA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25,30" Spacing="22">
+
+            <Label Text="Welcome"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#5B35D5" />
+
+            <Border StrokeThickness="0"
+                    BackgroundColor="White"
+                    Padding="25"
+                    StrokeShape="RoundRectangle 30">
+
+                <VerticalStackLayout Spacing="20">
+
+                    <!-- Picture booth area -->
+                    <Border Stroke="#D8DCE6"
+                            StrokeThickness="1.2"
+                            BackgroundColor="#EEF2F7"
+                            HeightRequest="150"
+                            StrokeShape="RoundRectangle 20">
+
+                        <Grid>
+                            <Image Source="welcome_icon.png"
+                                   HeightRequest="80"
+                                   WidthRequest="80"
+                                   Aspect="AspectFit"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                    <!--The filling in of personal information and the selection process -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Strength Log"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               TextColor="Black" />
+
+                        <Label Text="Track your progress, build your strength, and stay consistent."
+                               FontSize="15"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#666666" />
+                    </VerticalStackLayout>
+
+                    <Border BackgroundColor="#F8FAFC"
+                            Stroke="#D9E6F2"
+                            StrokeThickness="1"
+                            Padding="18"
+                            StrokeShape="RoundRectangle 18">
+
+                        <VerticalStackLayout Spacing="16">
+
+                            <Entry x:Name="HeightEntry"
+                                   Placeholder="Please enter your height (cm)"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="White"
+                                   TextColor="Black"
+                                   HeightRequest="50" />
+
+                            <Entry x:Name="WeightEntry"
+                                   Placeholder="Please enter your weight (kg)"
+                                   Keyboard="Numeric"
+                                   BackgroundColor="White"
+                                   TextColor="Black"
+                                   HeightRequest="50" />
+
+                            <Picker x:Name="GenderPicker"
+                                    Title="Select your gender"
+                                    BackgroundColor="White"
+                                    TextColor="Black"
+                                    HeightRequest="50">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Male</x:String>
+                                        <x:String>Female</x:String>
+                                        <x:String>Other</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+
+                            <Label x:Name="BmiResultLabel"
+                                   Text="BMI value will appear here"
+                                   FontSize="15"
+                                   HorizontalOptions="Center"
+                                   TextColor="Gray" />
+
+                            <Button Text="Continue"
+                                    Clicked="OnContinueClicked"
+                                    HeightRequest="55"
+                                    CornerRadius="12"
+                                    BackgroundColor="#5B35D5"
+                                    TextColor="White"
+                                    FontAttributes="Bold"
+                                    Margin="0,8,0,0"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
