@@ -98,7 +98,7 @@
                                              Spacing="12"
                                              VerticalOptions="Center"
                                              HorizontalOptions="Center"
-                                             Margin="18,-8,10,0"
+                                             Margin="18,-10,10,0"
                                              MaximumWidthRequest="520">
 
                             <Label Text="Health Insight"
