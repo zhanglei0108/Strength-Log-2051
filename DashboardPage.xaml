@@ -53,7 +53,7 @@
 
                                 <Grid>
                                 <Image x:Name="ProfileImage"
-                                       Source="male.png"
+                                       Source="male.jpg"
                                            Aspect="AspectFill"
                                            HorizontalOptions="Fill"
                                            VerticalOptions="Fill" />

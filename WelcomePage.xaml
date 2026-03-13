@@ -29,7 +29,7 @@
 
                         <Grid>
                             <!--Make the picture cover the entire area as much as possible. -->
-                            <Image Source="welcome_icon.png"
+                            <Image Source="welcome_icon.jpg"
                                    HeightRequest="250"
                                    WidthRequest="1600"
                                    Aspect="AspectFill" 

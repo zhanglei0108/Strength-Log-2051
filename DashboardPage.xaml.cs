@@ -36,11 +36,11 @@ public partial class DashboardPage : ContentPage
 
         if (normalizedGender == "female")
         {
-            ProfileImage.Source = "female.png";
+            ProfileImage.Source = "female.jpg";
         }
         else
         {
-            ProfileImage.Source = "male.png";
+            ProfileImage.Source = "male.jpg";
         }
     }
     //Different situations of BMI.//
