@@ -120,7 +120,7 @@
                                    HorizontalTextAlignment="Center"/>
                         </VerticalStackLayout>
 
-                        <!-- The two buttons on the right are "Delete" and "Edit". -->
+                        <!-- The two buttons on the right are "Delete" and "Edit".. -->
                         <VerticalStackLayout Grid.Column="2"
                                              Spacing="12"
                                              VerticalOptions="Start"

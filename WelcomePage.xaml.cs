@@ -59,7 +59,7 @@ public partial class WelcomePage : ContentPage
                 "OK");
             return;
         }
-        //BMI calculation formula//
+        //BMI calculation formula.//
         double heightM = heightCm / 100.0;
         double bmi = weightKg / (heightM * heightM);
 

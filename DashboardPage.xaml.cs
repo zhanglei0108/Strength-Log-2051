@@ -43,7 +43,7 @@ public partial class DashboardPage : ContentPage
             ProfileImage.Source = "male.png";
         }
     }
-    //Different situations of BMI//
+    //Different situations of BMI.//
     private string GetBmiStatus(double bmi)
     {
         if (bmi <= 0)
