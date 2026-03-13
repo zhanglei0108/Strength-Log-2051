@@ -52,8 +52,8 @@
                                     VerticalOptions="Center">
 
                                 <Grid>
-                                    <Image x:Name="ProfileImage"
-                                           Source="male.png"
+                                <Image x:Name="ProfileImage"
+                                       Source="male.png"
                                            Aspect="AspectFill"
                                            HorizontalOptions="Fill"
                                            VerticalOptions="Fill" />

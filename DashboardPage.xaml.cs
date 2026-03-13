@@ -80,8 +80,8 @@ public partial class DashboardPage : ContentPage
     private async void OnAddWorkoutClicked(object? sender, EventArgs e)
     {
         await DisplayAlertAsync("Coming Soon",
-             "The workout recording feature will be added next.",
-             "OK");
+            "The workout recording feature will be added next.",
+            "OK");
     }
 
     private async void OnEditProfileClicked(object? sender, EventArgs e)
