@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Strength_Log.DashboardPage"
+             Title="Dashboard"
+             BackgroundColor="#F5F7FA">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25,30" Spacing="20">
+
+            <Label Text="Dashboard"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="Black" />
+
+            <Label Text="Welcome back! Ready for today's training?"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   TextColor="#666666" />
+
+            <!-- Personal Information -->
+            <Border Stroke="#D9DDE5"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 22"
+                    Padding="18"
+                    BackgroundColor="White">
+
+                <VerticalStackLayout Spacing="16">
+
+                    <Label Text="Personal Information"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="Black" />
+
+                    <!-- Three-column layout: Left information / Middle text / Right button -->
+                    <Grid ColumnDefinitions="255,*,100"
+                          ColumnSpacing="28"
+                          MinimumHeightRequest="210">
+                        <!-- The left-profile picture and basic login information -->
+                        <HorizontalStackLayout Grid.Column="0"
+                                               Spacing="16"
+                                               VerticalOptions="Start">
+
+                            <Border Stroke="#D8DCE6"
+                                    StrokeThickness="1"
+                                    BackgroundColor="#F8FAFC"
+                                    Padding="0"
+                                    WidthRequest="145"
+                                    HeightRequest="185"
+                                    StrokeShape="RoundRectangle 18"
+                                    VerticalOptions="Center">
+
+                                <Grid>
+                                    <Image x:Name="ProfileImage"
+                                           Source="male.png"
+                                           Aspect="AspectFill"
+                                           HorizontalOptions="Fill"
+                                           VerticalOptions="Fill" />
+                                </Grid>
+                            </Border>
+
+                            <VerticalStackLayout Spacing="11"
+                                                 VerticalOptions="Center">
+
+                                <Label x:Name="GenderLabel"
+                                       FontSize="16"
+                                       TextColor="Black" />
+
+                                <Label x:Name="HeightLabel"
+                                       FontSize="16"
+                                       TextColor="Black" />
+
+                                <Label x:Name="WeightLabel"
+                                       FontSize="16"
+                                       TextColor="Black" />
+
+                                <Label x:Name="BmiLabel"
+                                       FontSize="16"
+                                       TextColor="Black" />
+
+                                <Border BackgroundColor="#F3F0FF"
+                                        StrokeThickness="0"
+                                        Padding="10,8"
+                                        StrokeShape="RoundRectangle 12"
+                                        HorizontalOptions="Start">
+
+                                    <Label x:Name="BmiStatusLabel"
+                                           FontSize="15"
+                                           FontAttributes="Bold"
+                                           TextColor="#5B35D5" />
+                                </Border>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
+                        <!-- The middle text area is responsible for displaying different sentences. -->
+                        <VerticalStackLayout Grid.Column="1"
+                                             Spacing="12"
+                                             VerticalOptions="Center"
+                                             HorizontalOptions="Center"
+                                             Margin="18,-8,10,0"
+                                             MaximumWidthRequest="520">
+
+                            <Label Text="Health Insight"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#2F2F2F" 
+                                   HorizontalTextAlignment="Center"/>
+
+                            <Label x:Name="BmiCommentLabel"
+                                   FontSize="18"
+                                   TextColor="#3F3F3F"
+                                   LineBreakMode="WordWrap"
+                                   HorizontalTextAlignment="Center"/>
+
+                            <Label x:Name="MotivationLabel"
+                                   FontSize="16"
+                                   TextColor="#5C5C5C"
+                                   LineBreakMode="WordWrap" 
+                                   HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+
+                        <!-- The two buttons on the right are "Delete" and "Edit". -->
+                        <VerticalStackLayout Grid.Column="2"
+                                             Spacing="12"
+                                             VerticalOptions="Start"
+                                             HorizontalOptions="End">
+
+                            <Button Text="Edit"
+                                    Clicked="OnEditProfileClicked"
+                                    HeightRequest="40"
+                                    WidthRequest="90"
+                                    CornerRadius="10"
+                                    FontSize="14"
+                                    BackgroundColor="#5B35D5"
+                                    TextColor="White"
+                                    FontAttributes="Bold" />
+
+                            <Button Text="Delete"
+                                    Clicked="OnResetDataClicked"
+                                    HeightRequest="40"
+                                    WidthRequest="90"
+                                    CornerRadius="10"
+                                    FontSize="14"
+                                    BackgroundColor="#D9534F"
+                                    TextColor="White"
+                                    FontAttributes="Bold" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Recent Workouts -->
+            <Border Stroke="#D9DDE5"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 22"
+                    Padding="18"
+                    BackgroundColor="White">
+
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Recent Workouts"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="Black" />
+
+                    <Border BackgroundColor="#F8FAFC"
+                            Stroke="#E3E7EE"
+                            StrokeThickness="1"
+                            Padding="14"
+                            StrokeShape="RoundRectangle 14">
+
+                        <Label x:Name="WorkoutPlaceholderLabel"
+                               Text="No workout records yet. Start adding your first workout."
+                               FontSize="15"
+                               TextColor="Gray" />
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="Add New Workout"
+                    Clicked="OnAddWorkoutClicked"
+                    HeightRequest="52"
+                    CornerRadius="12"
+                    BackgroundColor="#5B35D5"
+                    TextColor="White"
+                    FontAttributes="Bold" />
+
+            <Button Text="Reset All Data"
+                    Clicked="OnResetDataClicked"
+                    HeightRequest="42"
+                    CornerRadius="10"
+                    BackgroundColor="#F3D6D5"
+                    TextColor="#A94442"
+                    FontAttributes="Bold" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
