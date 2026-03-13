@@ -28,7 +28,7 @@
                             StrokeShape="RoundRectangle 20">
 
                         <Grid>
-                            <!--Make the picture cover the entire area as much as Possible. -->
+                            <!--Make the picture cover the entire area as much as possible. -->
                             <Image Source="welcome_icon.png"
                                    HeightRequest="250"
                                    WidthRequest="1600"
