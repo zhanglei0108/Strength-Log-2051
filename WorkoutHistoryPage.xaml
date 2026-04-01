@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Strength_Log.WorkoutHistoryPage"
+             Title="Workout History"
+             BackgroundColor="#F5F5F5">
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+
+        <Label Text="Workout History"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="Black" />
+
+        <CollectionView x:Name="WorkoutCollectionView">
+            <CollectionView.EmptyView>
+                <Label Text="No workout records yet."
+                       FontSize="16"
+                       TextColor="Gray"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,8"
+                           Padding="15"
+                           CornerRadius="18"
+                           BackgroundColor="White"
+                           HasShadow="True">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="{Binding ExerciseType}"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="Black" />
+
+                            <Label Text="{Binding DateText}"
+                                   FontSize="14"
+                                   TextColor="Gray" />
+
+                            <Label Text="{Binding Sets, StringFormat='Sets: {0}'}"
+                                   FontSize="15"
+                                   TextColor="Black" />
+
+                            <Label Text="{Binding Reps, StringFormat='Reps: {0}'}"
+                                   FontSize="15"
+                                   TextColor="Black" />
+
+                            <Label Text="{Binding Weight, StringFormat='Weight: {0:F1} kg'}"
+                                   FontSize="15"
+                                   TextColor="Black" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Storage;
-
-namespace Strength_Log;
+﻿namespace Strength_Log;
 
 public partial class DashboardPage : ContentPage
 {
@@ -9,14 +7,24 @@ public partial class DashboardPage : ContentPage
         InitializeComponent();
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        double height = Preferences.Get("Height", 0.0);
-        double weight = Preferences.Get("Weight", 0.0);
-        string gender = Preferences.Get("Gender", "Unknown");
-        double bmi = Preferences.Get("BMI", 0.0);
+        var profile = await DbHelper.Database.GetLatestUserProfileAsync();
+
+        double height = 0.0;
+        double weight = 0.0;
+        string gender = "Unknown";
+        double bmi = 0.0;
+
+        if (profile is not null)
+        {
+            height = profile.Height;
+            weight = profile.Weight;
+            gender = profile.Gender;
+            bmi = profile.BMI;
+        }
 
         GenderLabel.Text = $"Gender: {gender}";
         HeightLabel.Text = $"Height: {height:F0} cm";
@@ -28,6 +36,22 @@ public partial class DashboardPage : ContentPage
         MotivationLabel.Text = GetMotivationText(bmi);
 
         SetProfileImage(gender);
+
+        // Show latest workout
+        var latestWorkout = await DbHelper.Database.GetLatestWorkoutAsync();
+
+        if (latestWorkout is null)
+        {
+            WorkoutPlaceholderLabel.Text = "No workout records yet. Start adding your first workout.";
+        }
+        else
+        {
+            WorkoutPlaceholderLabel.Text =
+                $"Exercise: {latestWorkout.ExerciseType}\n" +
+                $"Sets: {latestWorkout.Sets}   Reps: {latestWorkout.Reps}\n" +
+                $"Weight: {latestWorkout.Weight:F1} kg\n" +
+                $"Date: {latestWorkout.DateText}";
+        }
     }
 
     private void SetProfileImage(string gender)
@@ -43,11 +67,11 @@ public partial class DashboardPage : ContentPage
             ProfileImage.Source = "male.jpg";
         }
     }
-    //Different situations of BMI.//
+
     private string GetBmiStatus(double bmi)
     {
         if (bmi <= 0)
-            return "Not Available"; 
+            return "Not Available";
         else if (bmi < 18.5)
             return "Underweight";
         else if (bmi < 25)
@@ -57,7 +81,11 @@ public partial class DashboardPage : ContentPage
         else
             return "Obese";
     }
-    //Log in different copy content in the middle copy area according to different situations//
+    private async void OnViewHistoryClicked(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new WorkoutHistoryPage());
+    }
+
     private string GetBmiComment(double bmi)
     {
         if (bmi <= 0)
@@ -71,24 +99,22 @@ public partial class DashboardPage : ContentPage
         else
             return "Your BMI is above the healthy range. A gradual and sustainable fitness plan is recommended.";
     }
-    //Encouragement phrases//
+
     private string GetMotivationText(double bmi)
     {
         return "Stay consistent, trust the process, and every workout will bring you one step closer to your goal.";
     }
-    //This task is still under development....//
+
     private async void OnAddWorkoutClicked(object? sender, EventArgs e)
     {
-        await DisplayAlertAsync("Coming Soon",
-            "The workout recording feature will be added next.",
-            "OK");
+        await Navigation.PushModalAsync(new NavigationPage(new AddWorkoutPage()));
     }
 
     private async void OnEditProfileClicked(object? sender, EventArgs e)
     {
         await Navigation.PushAsync(new WelcomePage());
     }
-    //The specific function of the button - Edit//
+
     private async void OnResetDataClicked(object? sender, EventArgs e)
     {
         bool confirm = await DisplayAlertAsync(
@@ -99,7 +125,7 @@ public partial class DashboardPage : ContentPage
 
         if (confirm)
         {
-            Preferences.Clear();
+            await DbHelper.Database.ClearAllDataAsync();
             Application.Current!.Windows[0].Page = new NavigationPage(new MainPage());
         }
     }
