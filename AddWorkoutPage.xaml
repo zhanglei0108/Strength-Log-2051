@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Strength_Log.AddWorkoutPage"
+             Title="Add Workout"
+             BackgroundColor="#F5F5F5">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="25" Spacing="18">
+
+            <Label Text="Add Workout"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="Black" />
+
+            <Frame CornerRadius="20"
+                   Padding="20"
+                   BackgroundColor="White"
+                   HasShadow="True">
+
+                <VerticalStackLayout Spacing="15">
+
+                    <Label Text="Exercise Type"
+                           FontSize="16"
+                           TextColor="Black" />
+                    <Entry x:Name="ExerciseEntry"
+                           Placeholder="e.g. Bench Press" />
+
+                    <Label Text="Sets"
+                           FontSize="16"
+                           TextColor="Black" />
+                    <Entry x:Name="SetsEntry"
+                           Placeholder="e.g. 4"
+                           Keyboard="Numeric" />
+
+                    <Label Text="Reps"
+                           FontSize="16"
+                           TextColor="Black" />
+                    <Entry x:Name="RepsEntry"
+                           Placeholder="e.g. 10"
+                           Keyboard="Numeric" />
+
+                    <Label Text="Weight (kg)"
+                           FontSize="16"
+                           TextColor="Black" />
+                    <Entry x:Name="WeightEntry"
+                           Placeholder="e.g. 60"
+                           Keyboard="Numeric" />
+
+                    <Label Text="Date"
+                           FontSize="16"
+                           TextColor="Black" />
+                    <DatePicker x:Name="WorkoutDatePicker" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <HorizontalStackLayout Spacing="15"
+                                   HorizontalOptions="Center">
+
+                <Button Text="Save"
+                        WidthRequest="140"
+                        HeightRequest="50"
+                        CornerRadius="15"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        Clicked="OnSaveClicked" />
+
+                <Button Text="Cancel"
+                        WidthRequest="140"
+                        HeightRequest="50"
+                        CornerRadius="15"
+                        BackgroundColor="#9E9E9E"
+                        TextColor="White"
+                        Clicked="OnCancelClicked" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

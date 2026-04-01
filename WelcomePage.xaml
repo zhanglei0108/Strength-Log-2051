@@ -77,7 +77,7 @@
                                     Title="Select your gender"
                                     BackgroundColor="White"
                                     TextColor="Black"
-                                    HeightRequest="50">
+                                    HeightRequest="80">
                                 <Picker.ItemsSource>
                                     <x:Array Type="{x:Type x:String}">
                                         <x:String>Male</x:String>
@@ -86,12 +86,6 @@
                                     </x:Array>
                                 </Picker.ItemsSource>
                             </Picker>
-
-                            <Label x:Name="BmiResultLabel"
-                                   Text="BMI value will appear here"
-                                   FontSize="15"
-                                   HorizontalOptions="Center"
-                                   TextColor="Gray" />
 
                             <Button Text="Continue"
                                     Clicked="OnContinueClicked"
