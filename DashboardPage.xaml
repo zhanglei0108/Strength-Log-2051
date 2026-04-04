@@ -184,12 +184,6 @@
                     BackgroundColor="#5B35D5"
                     TextColor="White"
                     FontAttributes="Bold" />
-            <Button Text="View History"
-                    HeightRequest="50"
-                    CornerRadius="15"
-                    BackgroundColor="#3F51B5"
-                    TextColor="White"
-                    Clicked="OnViewHistoryClicked" />
 
             <Button Text="Reset All Data"
                     Clicked="OnResetDataClicked"

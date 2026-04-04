@@ -1,4 +1,5 @@
 ﻿using Microsoft.Maui.Controls;
+using Microsoft.Maui.Storage;
 
 namespace Strength_Log;
 
@@ -9,22 +10,26 @@ public partial class WelcomePage : ContentPage
         InitializeComponent();
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
 
-        var profile = await DbHelper.Database.GetLatestUserProfileAsync();
+        bool hasProfile = Preferences.Get("HasUserProfile", false);
 
-        if (profile is not null)
+        if (hasProfile)
         {
-            if (profile.Height > 0)
-                HeightEntry.Text = profile.Height.ToString();
+            double savedHeight = Preferences.Get("Height", 0.0);
+            double savedWeight = Preferences.Get("Weight", 0.0);
+            string savedGender = Preferences.Get("Gender", string.Empty);
 
-            if (profile.Weight > 0)
-                WeightEntry.Text = profile.Weight.ToString();
+            if (savedHeight > 0)
+                HeightEntry.Text = savedHeight.ToString();
 
-            if (!string.IsNullOrWhiteSpace(profile.Gender))
-                GenderPicker.SelectedItem = profile.Gender;
+            if (savedWeight > 0)
+                WeightEntry.Text = savedWeight.ToString();
+
+            if (!string.IsNullOrWhiteSpace(savedGender))
+                GenderPicker.SelectedItem = savedGender;
         }
     }
 
@@ -33,8 +38,7 @@ public partial class WelcomePage : ContentPage
         string heightText = HeightEntry.Text ?? string.Empty;
         string weightText = WeightEntry.Text ?? string.Empty;
         string gender = GenderPicker.SelectedItem?.ToString() ?? string.Empty;
-
-        // Prompt for incomplete information filling
+        //Prompt for incomplete information filling//
         if (string.IsNullOrWhiteSpace(heightText) ||
             string.IsNullOrWhiteSpace(weightText) ||
             string.IsNullOrWhiteSpace(gender))
@@ -44,8 +48,7 @@ public partial class WelcomePage : ContentPage
                 "OK");
             return;
         }
-
-        // Prompt for incorrect information filling
+        //Prompt for incorrect information filling//
         bool isHeightValid = double.TryParse(heightText, out double heightCm);
         bool isWeightValid = double.TryParse(weightText, out double weightKg);
 
@@ -56,36 +59,22 @@ public partial class WelcomePage : ContentPage
                 "OK");
             return;
         }
-
-        // BMI calculation formula
+        //BMI calculation formula.//
         double heightM = heightCm / 100.0;
         double bmi = weightKg / (heightM * heightM);
 
+        BmiResultLabel.Text = $"Your BMI: {bmi:F1}";
 
-        // Save to database only
-        var existingProfile = await DbHelper.Database.GetLatestUserProfileAsync();
+        UserProfile.Height = heightCm;
+        UserProfile.Weight = weightKg;
+        UserProfile.Gender = gender;
+        UserProfile.BMI = bmi;
 
-        if (existingProfile is not null)
-        {
-            existingProfile.Height = heightCm;
-            existingProfile.Weight = weightKg;
-            existingProfile.Gender = gender;
-            existingProfile.BMI = bmi;
-
-            await DbHelper.Database.SaveUserProfileAsync(existingProfile);
-        }
-        else
-        {
-            var newProfile = new UserProfileRecord
-            {
-                Height = heightCm,
-                Weight = weightKg,
-                Gender = gender,
-                BMI = bmi
-            };
-
-            await DbHelper.Database.SaveUserProfileAsync(newProfile);
-        }
+        Preferences.Set("HasUserProfile", true);
+        Preferences.Set("Height", heightCm);
+        Preferences.Set("Weight", weightKg);
+        Preferences.Set("Gender", gender);
+        Preferences.Set("BMI", bmi);
 
         await Navigation.PushAsync(new DashboardPage());
     }
