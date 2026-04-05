@@ -111,18 +111,23 @@ public partial class DashboardPage : ContentPage
         await Navigation.PushAsync(new WelcomePage());
     }
 
+    private async void OnViewWorkoutHistoryClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new WorkoutHistoryPage());
+    }
     private async void OnResetDataClicked(object? sender, EventArgs e)
     {
         bool confirm = await DisplayAlertAsync(
-            "Reset Data",
-            "Are you sure you want to clear all saved profile data?",
+            "Clear Workouts",
+            "Are you sure you want to delete all workout records?",
             "Yes",
             "No");
 
         if (confirm)
         {
-            await DbHelper.Database.ClearAllDataAsync();
-            Application.Current!.Windows[0].Page = new NavigationPage(new MainPage());
+            await DbHelper.Database.DeleteAllWorkoutsAsync();
+
+            OnAppearing();
         }
     }
 }

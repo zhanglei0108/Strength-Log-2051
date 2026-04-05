@@ -184,13 +184,12 @@
                     BackgroundColor="#5B35D5"
                     TextColor="White"
                     FontAttributes="Bold" />
-
-            <Button Text="Reset All Data"
-                    Clicked="OnResetDataClicked"
-                    HeightRequest="42"
-                    CornerRadius="10"
-                    BackgroundColor="#F3D6D5"
-                    TextColor="#A94442"
+            <Button Text="View Workout History"
+                    Clicked="OnViewWorkoutHistoryClicked"
+                    HeightRequest="52"
+                    CornerRadius="12"
+                    BackgroundColor="#E8EAF6"
+                    TextColor="#3F51B5"
                     FontAttributes="Bold" />
 
         </VerticalStackLayout>

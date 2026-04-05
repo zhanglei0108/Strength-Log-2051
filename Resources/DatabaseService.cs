@@ -80,6 +80,11 @@ public class DatabaseService
         await InitAsync();
         return await _database!.DeleteAllAsync<WorkoutRecord>();
     }
+    public async Task<int> DeleteWorkoutAsync(WorkoutRecord workout)
+    {
+        await InitAsync();
+        return await _database!.DeleteAsync(workout);
+    }
 
     public async Task<int> ClearAllDataAsync()
     {
