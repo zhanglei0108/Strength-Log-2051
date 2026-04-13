@@ -31,6 +31,7 @@ public partial class DashboardPage : ContentPage
         WeightLabel.Text = $"Weight: {weight:F1} kg";
         BmiLabel.Text = $"BMI: {bmi:F1}";
         BmiStatusLabel.Text = $"BMI Status: {GetBmiStatus(bmi)}";
+        SetBmiStatusColor(bmi);
 
         BmiCommentLabel.Text = GetBmiComment(bmi);
         MotivationLabel.Text = GetMotivationText(bmi);
@@ -48,7 +49,7 @@ public partial class DashboardPage : ContentPage
         {
             WorkoutPlaceholderLabel.Text =
                 $"Exercise: {latestWorkout.ExerciseType}\n" +
-                $"Sets: {latestWorkout.Sets}   Reps: {latestWorkout.Reps}\n" +
+                $"Sets: {latestWorkout.Sets} | Reps: {latestWorkout.Reps}\n" +
                 $"Weight: {latestWorkout.Weight:F1} kg\n" +
                 $"Date: {latestWorkout.DateText}";
         }
@@ -94,6 +95,32 @@ public partial class DashboardPage : ContentPage
             return "Your BMI is slightly above the healthy range. Consistent training and nutrition control can help.";
         else
             return "Your BMI is above the healthy range. A gradual and sustainable fitness plan is recommended.";
+    }
+    // The color will vary depending on different BMIs.//
+    private void SetBmiStatusColor(double bmi)
+    {
+        if (bmi <= 0)
+        {
+            BmiStatusLabel.TextColor = Colors.Gray;
+            return;
+        }
+
+        if (bmi < 18.5)
+        {
+            BmiStatusLabel.TextColor = Colors.Orange;
+        }
+        else if (bmi < 25)
+        {
+            BmiStatusLabel.TextColor = Colors.Green;
+        }
+        else if (bmi < 30)
+        {
+            BmiStatusLabel.TextColor = Colors.DarkOrange;
+        }
+        else
+        {
+            BmiStatusLabel.TextColor = Colors.Red;
+        }
     }
 
     private string GetMotivationText(double bmi)

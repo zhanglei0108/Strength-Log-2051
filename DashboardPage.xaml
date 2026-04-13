@@ -136,15 +136,7 @@
                                     TextColor="White"
                                     FontAttributes="Bold" />
 
-                            <Button Text="Delete"
-                                    Clicked="OnResetDataClicked"
-                                    HeightRequest="40"
-                                    WidthRequest="90"
-                                    CornerRadius="10"
-                                    FontSize="14"
-                                    BackgroundColor="#D9534F"
-                                    TextColor="White"
-                                    FontAttributes="Bold" />
+
                         </VerticalStackLayout>
                     </Grid>
                 </VerticalStackLayout>
@@ -163,16 +155,17 @@
                            FontAttributes="Bold"
                            TextColor="Black" />
 
-                    <Border BackgroundColor="#F8FAFC"
-                            Stroke="#E3E7EE"
+                    <Border BackgroundColor="White"
+                            Stroke="#DCDCDC"
                             StrokeThickness="1"
-                            Padding="14"
-                            StrokeShape="RoundRectangle 14">
+                            Padding="16"
+                            StrokeShape="RoundRectangle 16">
 
                         <Label x:Name="WorkoutPlaceholderLabel"
                                Text="No workout records yet. Start adding your first workout."
-                               FontSize="15"
-                               TextColor="Gray" />
+                               FontSize="17"
+                               TextColor="#222222"
+                               LineHeight="1.4"  />
                     </Border>
                 </VerticalStackLayout>
             </Border>
@@ -182,6 +175,13 @@
                     HeightRequest="52"
                     CornerRadius="12"
                     BackgroundColor="#5B35D5"
+                    TextColor="White"
+                    FontAttributes="Bold" />
+            <Button Text="Delete All Workout Records"
+                    Clicked="OnResetDataClicked"
+                    HeightRequest="52"
+                    CornerRadius="12"
+                    BackgroundColor="#D9534F"
                     TextColor="White"
                     FontAttributes="Bold" />
             <Button Text="View Workout History"
