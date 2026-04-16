@@ -82,7 +82,7 @@ public partial class DashboardPage : ContentPage
         else
             return "Obese";
     }
-
+    
     private string GetBmiComment(double bmi)
     {
         if (bmi <= 0)
@@ -115,7 +115,7 @@ public partial class DashboardPage : ContentPage
         }
         else if (bmi < 30)
         {
-            BmiStatusLabel.TextColor = Colors.DarkOrange;
+            BmiStatusLabel.TextColor = Colors.Yellow;
         }
         else
         {
@@ -136,6 +136,20 @@ public partial class DashboardPage : ContentPage
     private async void OnEditProfileClicked(object? sender, EventArgs e)
     {
         await Navigation.PushAsync(new WelcomePage());
+    }
+    private async void OnResetAppClicked(object? sender, EventArgs e)
+    {
+        bool confirm = await DisplayAlertAsync(
+            "Reset App",
+            "This will delete all profile data and workout history, then return to the home page. Continue?",
+            "Yes",
+            "No");
+
+        if (!confirm)
+            return;
+
+        await DbHelper.Database.ClearAllDataAsync();
+        await Navigation.PopToRootAsync();
     }
 
     private async void OnViewWorkoutHistoryClicked(object sender, EventArgs e)

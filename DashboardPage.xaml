@@ -135,6 +135,15 @@
                                     BackgroundColor="#5B35D5"
                                     TextColor="White"
                                     FontAttributes="Bold" />
+                            <Button Text="Reset"
+                                    Clicked="OnResetAppClicked"
+                                    HeightRequest="40"
+                                    WidthRequest="90"
+                                    CornerRadius="10"
+                                    FontSize="14"
+                                    BackgroundColor="#D9534F"
+                                    TextColor="White"
+                                    FontAttributes="Bold" />
 
 
                         </VerticalStackLayout>
